@@ -5,12 +5,14 @@ export default defineConfig({
   platform: 'neutral',
   target: 'es2022',
   format: 'esm',
+  minify: true, // Nén và làm rối (mangle) mã nguồn để bảo vệ logic
+  sourcemap: false, // TẮT sourcemap để ngăn dịch ngược về file TypeScript gốc
   dts: {
-    sourcemap: true,
+    sourcemap: false, // Tắt sourcemap cho cả file .d.ts
   },
-  sourcemap: true,
   clean: true,
   deps: {
     neverBundle: true,
   },
 });
+
