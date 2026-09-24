@@ -1,10 +1,10 @@
 import { MiCallError } from '@micall/core';
 
-export const DEFAULT_RINGTONE_URL = new URL(
+export const DEFAULT_RINGTONE_URL: string = new URL(
   '../assets/ringtones/incoming-sound.mp3',
   import.meta.url,
 ).href;
-export const DEFAULT_HANGUP_TONE_URL = new URL(
+export const DEFAULT_HANGUP_TONE_URL: string = new URL(
   '../assets/ringtones/hangup.mp3',
   import.meta.url,
 ).href;

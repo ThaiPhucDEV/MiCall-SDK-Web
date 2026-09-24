@@ -48,7 +48,7 @@ type MicrophonePermissionState = PermissionState | 'unknown' | 'unavailable';
 export class MiCallCallScreen extends LitElement {
   public static override styles: CSSResult = callScreenStyles;
 
-  public readonly logger = new MiCallUILogger();
+  public readonly logger: MiCallUILogger = new MiCallUILogger();
 
   @property({ attribute: false })
   public accessor client: MiCallConsumerClient | undefined;

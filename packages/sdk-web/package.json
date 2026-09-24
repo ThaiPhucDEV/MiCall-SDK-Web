@@ -1,6 +1,6 @@
 {
   "name": "@mitek/webrtc",
-  "version": "0.0.0",
+  "version": "1.1.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ThaiPhucDEV/MiCall-SDK-Web.git",
