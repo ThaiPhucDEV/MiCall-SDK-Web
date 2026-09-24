@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>MiCall SDK Web Playground</title>
+  </head>
+  <body>
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">MiCall SDK Web · M3 playground</p>
+        <h1>Browser voice lab</h1>
+        <p class="lede">
+          Kiểm tra SIP registration, call-in/call-out, audio và event bridge trên một trang.
+        </p>
+      </div>
+      <div class="runtime-note">
+        Credential chỉ tồn tại trong memory và bị xóa khi Destroy/reload.
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel config-panel" aria-labelledby="config-heading">
+        <div class="section-heading">
+          <div>
+            <span>01</span>
+            <h2 id="config-heading">SIP runtime config</h2>
+          </div>
+          <span id="session-state" class="badge">Chưa khởi tạo</span>
+        </div>
+        <form id="config-form" autocomplete="off">
+          <div class="field-grid">
+            <label
+              >WSS server<input
+                id="wss-server"
+                type="url"
+                required
+                placeholder="wss://pbx.example.com/ws"
+            /></label>
+            <label
+              >SIP URI / Extension<input
+                id="sip-uri"
+                required
+                placeholder="1001 hoặc sip:1001@pbx.example.com"
+            /></label>
+            <label>PBX domain<input id="sip-domain" placeholder="pbx.example.com" /></label>
+            <label
+              >Authorization username<input
+                id="username"
+                required
+                autocomplete="off"
+                placeholder="1001"
+            /></label>
+            <label
+              >Password<input id="password" type="password" required autocomplete="new-password"
+            /></label>
+            <label
+              >Display name<input id="display-name" autocomplete="off" placeholder="Agent 1001"
+            /></label>
+            <label
+              >Incoming header allowlist<input
+                id="header-allowlist"
+                placeholder="X-Tenant-Id, X-Ticket-Number"
+            /></label>
+            <label
+              >Ringtone URL<input id="ringtone-url" type="url" placeholder="https://…/ringtone.mp3"
+            /></label>
+            <label
+              >ICE / STUN URLs<input id="ice-servers" placeholder="stun:stun.example.com:3478"
+            /></label>
+            <label
+              >UI mode
+              <select id="ui-mode">
+                <option value="default">Default Call Screen</option>
+                <option value="custom">Default UI + custom theme/slot</option>
+                <option value="headless">Headless</option>
+              </select>
+            </label>
+          </div>
+          <div class="button-row">
+            <button class="primary" type="submit">Create & Start</button>
+            <button id="destroy" type="button" disabled>Destroy</button>
+            <button id="reset" type="reset">Reset form</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="status-grid" aria-label="Runtime status">
+        <article><span>Transport</span><strong id="transport-state">stopped</strong></article>
+        <article>
+          <span>Registration</span><strong id="registration-state">unregistered</strong>
+        </article>
+        <article><span>Call</span><strong id="call-state">none</strong></article>
+        <article><span>Page</span><strong id="visibility-state">visible</strong></article>
+        <article><span>Audio</span><strong id="audio-state">locked/unknown</strong></article>
+      </section>
+
+      <section class="panel controls-panel" aria-labelledby="controls-heading">
+        <div class="section-heading">
+          <div>
+            <span>02</span>
+            <h2 id="controls-heading">Call controls</h2>
+          </div>
+        </div>
+        <div class="call-row">
+          <label
+            >Destination<input
+              id="destination"
+              inputmode="tel"
+              placeholder="1002 hoặc sip:1002@domain"
+          /></label>
+          <button id="call" class="primary" type="button" disabled>Call</button>
+          <button id="answer" type="button" disabled>Answer</button>
+          <button id="reject" class="danger" type="button" disabled>Reject</button>
+          <button id="hangup" class="danger" type="button" disabled>Hangup</button>
+        </div>
+        <div class="button-row wrap">
+          <button id="mute" type="button" disabled>Mute</button>
+          <button id="hold" type="button" disabled>Hold</button>
+          <label class="inline-field"
+            >DTMF<input id="dtmf" maxlength="32" placeholder="123#"
+          /></label>
+          <button id="send-dtmf" type="button" disabled>Send DTMF</button>
+          <label class="inline-field"
+            >Transfer<input id="transfer-destination" placeholder="1003"
+          /></label>
+          <button id="transfer" type="button" disabled>Blind transfer</button>
+          <button id="unlock-audio" type="button" disabled>Unlock Audio</button>
+        </div>
+        <div class="device-grid">
+          <label
+            >Microphone<select id="audio-input" disabled>
+              <option value="">Chưa có thiết bị</option>
+            </select></label
+          >
+          <label
+            >Call output<select id="call-output" disabled>
+              <option value="">Chưa có thiết bị</option>
+            </select></label
+          >
+          <label
+            >Ringtone output<select id="ringtone-output" disabled>
+              <option value="">Chưa có thiết bị</option>
+            </select></label
+          >
+        </div>
+      </section>
+
+      <section class="panel log-panel" aria-labelledby="events-heading">
+        <div class="section-heading">
+          <div>
+            <span>03</span>
+            <h2 id="events-heading">Redacted event inspector</h2>
+          </div>
+          <button id="clear-log" type="button">Clear</button>
+        </div>
+        <ol id="event-log" class="event-log" aria-live="polite"></ol>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

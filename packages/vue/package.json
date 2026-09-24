@@ -1,0 +1,29 @@
+{
+  "name": "@micall/vue",
+  "version": "0.0.0",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@micall/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "vue": ">=3.3.0 <4"
+  },
+  "devDependencies": {
+    "vue": "3.5.43"
+  }
+}

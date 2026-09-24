@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "declaration": false,
+    "declarationMap": false,
+    "experimentalDecorators": true,
+    "isolatedDeclarations": false,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "noEmit": true,
+    "types": ["vite/client"],
+    "useDefineForClassFields": false
+  },
+  "include": ["src/**/*.ts"]
+}

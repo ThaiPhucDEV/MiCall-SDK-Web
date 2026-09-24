@@ -1,0 +1,48 @@
+{
+  "name": "micall-sdk-web-workspace",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.5.1",
+  "engines": {
+    "node": ">=24.0.0 <25",
+    "pnpm": "12.5.1"
+  },
+  "scripts": {
+    "build": "pnpm build:packages && pnpm build:playground",
+    "build:packages": "pnpm --recursive --filter './packages/*' run build",
+    "build:playground": "pnpm --filter @micall/playground run build",
+    "build:iife": "pnpm --filter @mitek/webrtc build:iife",
+    "changeset": "changeset",
+    "check:format": "prettier --check .",
+    "check:cycles": "node scripts/check-dependency-graph.mjs",
+    "check:packages": "pnpm --recursive --filter './packages/*' exec publint && pnpm --recursive --filter './packages/*' exec attw --pack . --ignore-rules cjs-resolves-to-esm",
+    "check:size": "node scripts/check-bundle-size.mjs",
+    "format": "prettier --write .",
+    "example": "pnpm --filter @micall/quick-start dev",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "test:watch": "vitest",
+    "typecheck": "pnpm --recursive --filter './packages/*' --if-present typecheck",
+    "version:packages": "changeset version",
+    "release:packages": "changeset publish"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "0.18.5",
+    "@changesets/cli": "3.0.3",
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.63.0",
+    "@types/node": "26.6.2",
+    "eslint": "10.11.0",
+    "globals": "17.12.0",
+    "prettier": "3.9.8",
+    "publint": "0.3.24",
+    "tsdown": "0.23.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.70.0",
+    "unrun": "0.3.1",
+    "vite": "8.3.0",
+    "vitest": "5.0.1"
+  }
+}

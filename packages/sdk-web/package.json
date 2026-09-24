@@ -1,0 +1,31 @@
+{
+  "name": "@mitek/webrtc",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThaiPhucDEV/MiCall-SDK-Web.git",
+    "directory": "packages/sdk-web"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "build:iife": "tsdown --config tsdown.iife.config.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@micall/call-screen": "workspace:*",
+    "@micall/core": "workspace:*",
+    "@micall/sipjs-browser": "workspace:*"
+  }
+}

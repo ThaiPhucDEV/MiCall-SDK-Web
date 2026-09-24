@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>MiCall SDK Web · Quick start</title>
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <p class="eyebrow">MiCall SDK Web</p>
+        <h1>Login, register và gọi</h1>
+        <p>Example tối giản cho luồng tích hợp phổ biến của host app.</p>
+      </header>
+
+      <section id="login-view" class="card" aria-labelledby="login-title">
+        <h2 id="login-title">1. Đăng nhập</h2>
+        <form id="login-form">
+          <label>
+            Email
+            <input id="email" type="email" autocomplete="username" required />
+          </label>
+          <label>
+            Password
+            <input id="password" type="password" autocomplete="current-password" required />
+          </label>
+          <button id="login-button" type="submit">Đăng nhập</button>
+        </form>
+        <p id="login-status" class="status" role="status" aria-live="polite">
+          Nhập Email và Password để kết nối tổng đài SIP.
+        </p>
+      </section>
+
+      <div id="phone-view" class="phone-view" hidden>
+        <section class="card session" aria-labelledby="session-title">
+          <div>
+            <h2 id="session-title">2. SIP đã sẵn sàng</h2>
+            <p>Tài khoản: <strong id="account-email">—</strong></p>
+            <p>Extension: <strong id="extension">—</strong></p>
+          </div>
+          <button id="logout-button" class="secondary" type="button">Đăng xuất</button>
+        </section>
+
+        <section class="states" aria-label="Trạng thái SDK">
+          <p>Transport <strong id="transport-state">stopped</strong></p>
+          <p>Registration <strong id="registration-state">unregistered</strong></p>
+          <p>Call <strong id="call-state">none</strong></p>
+          <p>Page <strong id="page-visibility-state">visible</strong></p>
+          <p>Notification <strong id="notification-state">default</strong></p>
+          <p>Ringtone <strong id="ringtone-state">locked/unknown</strong></p>
+        </section>
+
+        <section class="card notification-card" aria-labelledby="notification-title">
+          <div>
+            <h2 id="notification-title">Thông báo cuộc gọi nền</h2>
+            <p class="hint">
+              Bật chuông và system notification để nhận cảnh báo khi tab còn mở nhưng đang bị ẩn.
+            </p>
+          </div>
+          <button id="enable-notifications-button" class="secondary" type="button">
+            Bật chuông & thông báo
+          </button>
+        </section>
+
+        <section class="card" aria-labelledby="call-title">
+          <h2 id="call-title">3. Thực hiện cuộc gọi</h2>
+          <div class="call-form">
+            <label>
+              Số máy cần gọi
+              <input id="destination" inputmode="tel" placeholder="Ví dụ: 1002" />
+            </label>
+            <button id="call-button" type="button" disabled>Gọi</button>
+          </div>
+          <p class="hint">
+            Khi có cuộc gọi, default call screen của SDK sẽ hiện các nút nghe, từ chối,
+            mute, hold, DTMF, transfer và gác máy.
+          </p>
+        </section>
+
+        <section class="card" aria-labelledby="events-title">
+          <h2 id="events-title">Sự kiện gần nhất</h2>
+          <ul id="event-log" class="event-log" aria-live="polite"></ul>
+        </section>
+      </div>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

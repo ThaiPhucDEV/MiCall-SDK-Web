@@ -1,0 +1,27 @@
+{
+  "name": "@micall/sipjs-browser",
+  "version": "0.0.0",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "assets"
+  ],
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./assets/ringtones/incoming-sound.mp3": "./assets/ringtones/incoming-sound.mp3",
+    "./assets/ringtones/hangup.mp3": "./assets/ringtones/hangup.mp3"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@micall/core": "workspace:*",
+    "sip.js": "0.21.2"
+  }
+}
